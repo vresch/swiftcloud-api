@@ -1,7 +1,7 @@
 {
   "name": "sc-api",
   "version": "0.0.1",
-  "description": "",
+  "description": "Flexible API which exposes data in different shapes and queries to enable an awesome frontend",
   "author": "Max Vresch",
   "private": true,
   "license": "MIT",
