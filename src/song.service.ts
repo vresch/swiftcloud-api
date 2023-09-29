@@ -6,6 +6,10 @@ import { PrismaService } from './prisma.service';
 export class SongService {
   constructor(private prisma: PrismaService) {}
 
+  async allSongStat(): Promise<SongStat[] | null> {
+    return this.prisma.songStat.findMany();
+  }
+
   async songStat(
     songStatWhereUniqueInput: Prisma.SongStatWhereUniqueInput,
   ): Promise<SongStat | null> {
