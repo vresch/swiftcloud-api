@@ -4,6 +4,10 @@
 .env.development
 .env.production
 
+#sqlite
+*.db
+*-journal
+
 # compiled output
 /dist
 /node_modules
