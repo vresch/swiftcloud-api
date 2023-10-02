@@ -23,7 +23,7 @@ async function bootstrap() {
   const server = `${host}:${port}`;
   Logger.log(`Server is bootstrapped: http://${server}`);
   Logger.log(`API Documentation: http://${server}/api`);
-  Logger.log(`Server is bootstrapped: http://${host}:${port}`);
+  Logger.log(`GraphQL Playground: http://${server}/graphql`);
 }
 
 bootstrap();

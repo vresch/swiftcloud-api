@@ -1,0 +1,19 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SongStat {
+  id: Int!
+  song: String!
+  artist: String!
+  writer: String!
+  album: String!
+  year: Int!
+  playsJune: Int!
+  playsJuly: Int!
+  playsAugust: Int!
+}
+
+type Query {
+  getAllSongStat: [SongStat!]!
+}
