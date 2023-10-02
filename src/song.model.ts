@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import Paginated from './common/pagination/pagination';
 
 @ObjectType()
 export class Song {
@@ -29,3 +30,6 @@ export class Song {
   @Field(type => Int)
   playsAugust: number;
 }
+
+@ObjectType()
+export class PaginatedSong extends Paginated(Song) {}

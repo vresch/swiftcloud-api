@@ -1,31 +1,31 @@
-import { ArgsType, Field, Int } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 
-@ArgsType()
+@InputType()
 export class SongListArgs {
   @Field(type => Int, { nullable: true })
-  id: number;
+  id?: number;
 
   @Field({ nullable: true })
-  song: string;
+  song?: string;
 
   @Field({ nullable: true })
-  artist: string;
+  artist?: string;
 
   @Field({ nullable: true })
-  writer: string;
+  writer?: string;
 
   @Field({ nullable: true })
-  album: string;
+  album?: string;
 
   @Field(type => Int, { nullable: true })
-  year: number;
+  year?: number;
 
   @Field(type => Int, { nullable: true })
-  playsJune: number;
+  playsJune?: number;
 
   @Field(type => Int, { nullable: true })
-  playsJuly: number;
+  playsJuly?: number;
 
   @Field(type => Int, { nullable: true })
-  playsAugust: number;
+  playsAugust?: number;
 }

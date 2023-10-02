@@ -1,14 +1,20 @@
-import { Song } from './song.model';
+import { PaginatedSong, Song } from './song.model';
 import { Query, Resolver, Args } from '@nestjs/graphql';
 import { SongService } from './song.service';
 import { SongListArgs } from './song.args';
+import { PaginationArgs } from './common/pagination/pagination.args';
 
-@Resolver(of => Song)
+@Resolver(() => Song)
 export class SongResolver {
-  constructor(private songService: SongService) {}
+  constructor(private readonly songService: SongService) {}
 
-  @Query(returns => [Song])
-  async songList(@Args() songListArgs: SongListArgs) {
-    return this.songService.findSongs(songListArgs);
+  @Query(() => PaginatedSong)
+  async songList(
+    @Args({ name: 'pagination', type: () => PaginationArgs, nullable: true })
+    paginationArgs: PaginationArgs,
+    @Args({ name: 'query', type: () => SongListArgs, nullable: true })
+    songListArgs: SongListArgs,
+  ) {
+    return this.songService.findSongsPaginated(songListArgs, paginationArgs);
   }
 }

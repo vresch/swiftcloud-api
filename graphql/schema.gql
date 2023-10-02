@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
 type Song {
   id: Int!
   song: String!
@@ -14,6 +21,17 @@ type Song {
   playsAugust: Int!
 }
 
+type SongEdge {
+  cursor: String!
+  node: Song!
+}
+
+type PaginatedSong {
+  edges: [SongEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
 type Query {
-  songList(id: Int, song: String, artist: String, writer: String, album: String, year: Int, playsJune: Int, playsJuly: Int, playsAugust: Int): [Song!]!
+  songList(id: Int, song: String, artist: String, writer: String, album: String, year: Int, playsJune: Int, playsJuly: Int, playsAugust: Int): PaginatedSong!
 }
