@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type SongStat {
+type Song {
   id: Int!
   song: String!
   artist: String!
@@ -15,5 +15,5 @@ type SongStat {
 }
 
 type Query {
-  getAllSongStat: [SongStat!]!
+  songList(id: Int, song: String, artist: String, writer: String, album: String, year: Int, playsJune: Int, playsJuly: Int, playsAugust: Int): [Song!]!
 }

@@ -10,11 +10,11 @@ export class SongService {
     return this.prisma.songStat.findMany();
   }
 
-  async songStat(
-    songStatWhereUniqueInput: Prisma.SongStatWhereUniqueInput,
-  ): Promise<SongStat | null> {
-    return this.prisma.songStat.findUnique({
-      where: songStatWhereUniqueInput,
+  async findSongs(
+    filterParams: Prisma.SongStatWhereInput,
+  ): Promise<SongStat[] | null> {
+    return this.prisma.songStat.findMany({
+      where: filterParams,
     });
   }
 }

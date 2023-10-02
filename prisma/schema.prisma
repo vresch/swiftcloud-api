@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model SongStat {
+model Song {
   id    Int     @default(autoincrement()) @id
   song String  @unique
   artist  String
