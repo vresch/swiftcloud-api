@@ -4,6 +4,7 @@ import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection
 import { Injectable } from '@nestjs/common';
 import { SongStat, Prisma } from '@prisma/client';
 import { PrismaService } from './prisma.service';
+import { OrderByArgs } from './common/orderby/orderby.args';
 
 @Injectable()
 export class SongService {
@@ -15,13 +16,12 @@ export class SongService {
 
   async findSongs(
     filterParams: Prisma.SongStatWhereInput,
-    args: any, // todo: fix any
+    orderBy: OrderByArgs,
   ): Promise<SongStat[] | null> {
     return this.prisma.songStat.findMany({
       where: filterParams,
       // include: { plays: true },
-      // orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : undefined,
-      ...args,
+      orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : undefined,
     });
   }
 
@@ -34,6 +34,7 @@ export class SongService {
   async findSongsPaginated(
     filterParams: Prisma.SongStatWhereInput,
     paginationArgs: PaginationArgs,
+    orderBy?: OrderByArgs,
   ): Promise<PaginatedSong> {
     return findManyCursorConnection(
       () => this.findSongs(filterParams, orderBy),

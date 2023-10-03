@@ -33,5 +33,37 @@ type PaginatedSong {
 }
 
 type Query {
-  songList(id: Int, song: String, artist: String, writer: String, album: String, year: Int, playsJune: Int, playsJuly: Int, playsAugust: Int): PaginatedSong!
+  songList(pagination: PaginationArgs, query: SongListArgs, orderBy: OrderByArgs): PaginatedSong!
+}
+
+input PaginationArgs {
+  after: String
+  before: String
+  first: Int
+  last: Int
+}
+
+input SongListArgs {
+  id: Int
+  song: String
+  artist: String
+  writer: String
+  album: String
+  year: Int
+  playsJune: Int
+  playsJuly: Int
+  playsAugust: Int
+}
+
+input OrderByArgs {
+  field: String!
+  direction: OrderDirection! = asc
+}
+
+"""
+Possible directions in which to order a list of items when provided an `orderBy` argument.
+"""
+enum OrderDirection {
+  asc
+  desc
 }
