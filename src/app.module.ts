@@ -1,13 +1,11 @@
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import configuration from './config/configuration';
 import { AppController } from './app.controller';
-import { SongService } from './song.service';
-import { PrismaService } from './prisma.service';
-import { join } from 'path';
-import { SongResolver } from './song.resolver';
+import { SongModule } from './song/song.module';
 
 @Module({
   imports: [
@@ -18,8 +16,9 @@ import { SongResolver } from './song.resolver';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'graphql/schema.gql'),
     }),
+    SongModule,
   ],
   controllers: [AppController],
-  providers: [SongService, PrismaService, SongResolver],
+  providers: [],
 })
 export class AppModule {}

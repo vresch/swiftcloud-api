@@ -2,8 +2,8 @@ import { PaginatedSong, Song } from './song.model';
 import { Query, Resolver, Args } from '@nestjs/graphql';
 import { SongService } from './song.service';
 import { SongListArgs } from './song.args';
-import { PaginationArgs } from './common/pagination/pagination.args';
-import { OrderByArgs } from './common/orderby/orderby.args';
+import { PaginationArgs } from '../common/pagination/pagination.args';
+import { OrderByArgs } from '../common/orderby/orderby.args';
 
 @Resolver(() => Song)
 export class SongResolver {

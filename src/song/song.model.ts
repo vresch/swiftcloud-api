@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import Paginated from './common/pagination/pagination';
+import Paginated from '../common/pagination/pagination';
 
 @ObjectType()
 export class Song {

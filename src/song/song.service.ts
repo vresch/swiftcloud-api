@@ -1,10 +1,10 @@
 import { PaginatedSong } from './song.model';
-import { PaginationArgs } from './common/pagination/pagination.args';
+import { PaginationArgs } from './../common/pagination/pagination.args';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
 import { Song, Prisma } from '@prisma/client';
-import { PrismaService } from './prisma.service';
-import { OrderByArgs } from './common/orderby/orderby.args';
+import { PrismaService } from '../common/prisma.service';
+import { OrderByArgs } from './../common/orderby/orderby.args';
 
 @Injectable()
 export class SongService {
