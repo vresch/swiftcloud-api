@@ -6,6 +6,9 @@ The #1 app for Taylor Swifties!
 
 Flexible API which exposes this data in different shapes and queries to enable an awesome frontend
 
+## Tech Stack
+Typescript, NestJS, GraphQL, Prisma, SQLite, Docker
+
 ## Installation
 
 ```bash
@@ -39,6 +42,42 @@ $ yarn run start:dev
 
 # production mode
 $ yarn run start:prod
+```
+
+## Docker
+```bash
+docker build -t swiftcloud-api .
+docker run -t --name swiftcloud-api --env-file .env -p 3000:3000 swiftcloud-api
+```
+
+## Queries examples
+Try these queries in the GraphQL playground at http://localhost:3000/graphql
+```graphql
+# Get a paginated list of songs of 2020 year ordered by most played in June
+query songList {
+  songList(
+    pagination: { first: 10 }
+    query: { year: 2020 }
+    orderBy: { field: "playsJune", direction: desc }
+  ) {
+    totalCount
+    pageInfo {
+      startCursor
+      hasNextPage
+      hasPreviousPage
+      endCursor
+    }
+    edges {
+      cursor
+      node {
+        id
+        song
+        year
+        playsJune
+      }
+    }
+  }
+}
 ```
 
 ## Test
