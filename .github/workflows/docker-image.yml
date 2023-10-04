@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.build --tag swiftcloud-api:$(date +%s)
+      run: docker build . --file Dockerfile --tag swiftcloud-api:$(date +%s)

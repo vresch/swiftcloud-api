@@ -1,11 +1,10 @@
 FROM node:20-alpine
 WORKDIR /app
 COPY package*.json yarn.lock .env.example ./
-RUN yarn install --production
-COPY /prisma ./prisma
-COPY /graphql ./graphql
-COPY /dist ./dist
-RUN mv .env.example .env
+RUN yarn install --production && yarn add -D @nestjs/cli
+COPY . .
 RUN yarn prisma generate
+RUN yarn build
+RUN mv .env.example .env
 EXPOSE $PORT
 CMD ["yarn", "start:prod"]
