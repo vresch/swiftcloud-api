@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
-import * as csurf from 'csurf';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -9,7 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();
-  app.use(csurf());
 
   const docConfig = new DocumentBuilder()
     .setTitle('SwiftCloud API')
