@@ -5,7 +5,7 @@
 .env.production
 
 #sqlite
-*.db
+#*.db
 *-journal
 
 # compiled output
