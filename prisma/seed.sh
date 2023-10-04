@@ -3,7 +3,7 @@
 # Set your CSV file name and SQLite database name
 csv_file="./SwiftCloud.csv"
 database_name="./dev.db"
-table_name="SongStat"
+table_name="Song"
 temp_table="temp_table"
 
 # Check if the CSV file exists

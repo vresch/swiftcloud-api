@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "SongStat" (
+CREATE TABLE "Song" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "song" TEXT NOT NULL,
     "artist" TEXT NOT NULL,
@@ -12,4 +12,4 @@ CREATE TABLE "SongStat" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "SongStat_song_key" ON "SongStat"("song");
+CREATE UNIQUE INDEX "Song_song_key" ON "Song"("song");

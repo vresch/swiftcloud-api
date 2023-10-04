@@ -2,7 +2,7 @@ import { PaginatedSong } from './song.model';
 import { PaginationArgs } from './common/pagination/pagination.args';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
-import { SongStat, Prisma } from '@prisma/client';
+import { Song, Prisma } from '@prisma/client';
 import { PrismaService } from './prisma.service';
 import { OrderByArgs } from './common/orderby/orderby.args';
 
@@ -10,29 +10,25 @@ import { OrderByArgs } from './common/orderby/orderby.args';
 export class SongService {
   constructor(private prisma: PrismaService) {}
 
-  async allSongStat(): Promise<SongStat[] | null> {
-    return this.prisma.songStat.findMany();
-  }
-
   async findSongs(
-    filterParams: Prisma.SongStatWhereInput,
+    filterParams: Prisma.SongWhereInput,
     orderBy: OrderByArgs,
-  ): Promise<SongStat[] | null> {
-    return this.prisma.songStat.findMany({
+  ): Promise<Song[] | null> {
+    return this.prisma.song.findMany({
       where: filterParams,
       // include: { plays: true },
       orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : undefined,
     });
   }
 
-  async count(filterParams: Prisma.SongStatWhereInput): Promise<number> {
-    return this.prisma.songStat.count({
+  async count(filterParams: Prisma.SongWhereInput): Promise<number> {
+    return this.prisma.song.count({
       where: filterParams,
     });
   }
 
   async findSongsPaginated(
-    filterParams: Prisma.SongStatWhereInput,
+    filterParams: Prisma.SongWhereInput,
     paginationArgs: PaginationArgs,
     orderBy?: OrderByArgs,
   ): Promise<PaginatedSong> {
