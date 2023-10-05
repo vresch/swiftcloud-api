@@ -19,8 +19,8 @@ export class SongResolver {
     orderByArgs: OrderByArgs,
   ) {
     return this.songService.findSongsPaginated(
-      songListArgs,
       paginationArgs,
+      songListArgs,
       orderByArgs,
     );
   }

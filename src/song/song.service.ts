@@ -1,6 +1,8 @@
 import { PaginatedSong } from './song.model';
-import { PaginationArgs } from './../common/pagination/pagination.args';
-import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
+import {
+  findManyCursorConnection,
+  ConnectionArguments,
+} from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
 import { Song, Prisma } from '@prisma/client';
 import { PrismaService } from '../common/prisma.service';
@@ -11,12 +13,15 @@ export class SongService {
   constructor(private prisma: PrismaService) {}
 
   async findSongs(
+    args: any,
     filterParams: Prisma.SongWhereInput,
     orderBy: OrderByArgs,
   ): Promise<Song[] | null> {
+    args.cursor ? (args.cursor.id = Number(args.cursor.id)) : null; // todo: [db] workaround for schema ID: Int, sqlite supports only Int
     return this.prisma.song.findMany({
+      ...args,
       where: filterParams,
-      // include: { plays: true },
+      // include: { plays: true }, // todo: [db] relate
       orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : undefined,
     });
   }
@@ -28,12 +33,12 @@ export class SongService {
   }
 
   async findSongsPaginated(
+    paginationArgs: ConnectionArguments,
     filterParams: Prisma.SongWhereInput,
-    paginationArgs: PaginationArgs,
     orderBy?: OrderByArgs,
   ): Promise<PaginatedSong> {
     return findManyCursorConnection(
-      () => this.findSongs(filterParams, orderBy),
+      args => this.findSongs(args, filterParams, orderBy),
       () => this.count(filterParams),
       paginationArgs,
     );
