@@ -2,7 +2,7 @@ import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { YogaDriver, YogaDriverConfig } from '@graphql-yoga/nestjs';
 import configuration from './config/configuration';
 import { AppController } from './app.controller';
 import { SongModule } from './song/song.module';
@@ -12,8 +12,8 @@ import { SongModule } from './song/song.module';
     ConfigModule.forRoot({
       load: [configuration],
     }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
+    GraphQLModule.forRoot<YogaDriverConfig>({
+      driver: YogaDriver,
       autoSchemaFile: join(process.cwd(), 'graphql/schema.gql'),
     }),
     SongModule,

@@ -69,7 +69,6 @@ In local dev try these queries in the `GraphQL playground`: http://localhost:300
 OR Copy and paste `curl` `POST` req  below in your terminal:
 ```bash
 curl -L -X POST "http://swiftcloud-api-ad52e9ac6e6f.herokuapp.com/graphql" \
--H "x-apollo-operation-name: text/plain" \
 -H "Content-Type: application/json" \
 -d "{\"query\":\"query songList { \n  songList(\n    pagination: { first: 2 }\n    query: { year: 2020 }\n    orderBy: { field: \\\"playsJune\\\", direction: desc }\n  ) {\n    totalCount\n    pageInfo {\n      startCursor\n      hasNextPage\n      hasPreviousPage\n      endCursor\n    }\n    edges {\n      cursor\n      node {\n        id\n        song\n        year\n        playsJune\n      }\n    }\n  }\n}\",\"variables\":{}}"
 ```
